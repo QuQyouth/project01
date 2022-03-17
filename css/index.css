@@ -1,0 +1,446 @@
+/*顶部导航条*/
+
+.topbar-wrapper {
+    width: 100%;
+    background-color: #333;
+    height: 40px;
+    line-height: 40px;
+}
+
+.topbar-left,
+.topbar li {
+    float: left;
+}
+
+
+/*设置小三角*/
+
+
+/*小三角相对于.app定位*/
+
+.app {
+    position: relative;
+}
+
+
+/*鼠标移入显示小三角*/
+
+.app-father:hover .app::before {
+    /*
+    .app::before父元素为li
+    点击状态下的标签li，寻找其子元素.app为其添加伪元素.app::after,不会触发其他li
+    或者在显示二维码时：
+    .app:hover .qrcode,
+    .app:hover::before{
+        display:block;
+    }
+    */
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-bottom-color: white;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+
+/*鼠标移入显示二维码*/
+
+.app:hover .qrcode {
+    height: 148px;
+}
+
+.app .qrcode {
+    background-color: white;
+    height: 0;
+    overflow: hidden;
+    /*
+    display:none不可见且不占位置 若设置height为0overflow为hidden则不显示但占位置
+    此时因为设置了positionn:absolute使元素脱离文档流，hidden也不占位置
+    */
+    position: absolute;
+    /*不占据父元素位置*/
+    z-index: 999;
+    left: -38px;
+    line-height: 1;
+    /*重置行高 使“小米APP正常显示”*/
+    text-align: center;
+    width: 124px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    transition: 0.3s;
+}
+
+.app .qrcode img {
+    width: 90px;
+    margin: 17px 17px;
+    margin-bottom: 10px;
+}
+
+.app .qrcode span {
+    font-size: 14px;
+    color: #000;
+}
+
+.topbar-center,
+.topbar-right {
+    float: right;
+}
+
+.topbar .line {
+    color: #424242;
+    font-size: 12px;
+    margin: 0 8px;
+}
+
+.topbar a {
+    display: block;
+}
+
+.topbar a:hover {
+    color: white;
+}
+
+.topbar-right a {
+    width: 120px;
+    background-color: #424242;
+    text-align: center;
+    margin-left: 26px;
+}
+
+.topbar-right:hover a {
+    color: #ff6700;
+    background-color: #fff;
+}
+
+.topbar-right:hover .cart-menu {
+    height: 100px;
+}
+
+.topbar-right .cart-menu {
+    width: 316px;
+    height: 0;
+    overflow: hidden;
+    background-color: white;
+    position: absolute;
+    z-index: 999;
+    top: 40px;
+    right: 27px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .3);
+    transition: 0.3s;
+    /*设置阴影垂直偏移2px不显示上阴影*/
+}
+
+
+/*头部css*/
+
+.head-wrapper {
+    width: 100%;
+    background-color: aquamarine;
+    position: relative;
+}
+
+.header {
+    height: 100px;
+}
+
+.header .logo {
+    float: left;
+    width: 55px;
+    height: 55px;
+    margin-top: 22px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header .logo a {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background-color: #ff6700;
+}
+
+.nav-wrapper {
+    float: left;
+    margin-left: 7px;
+}
+
+.nav-wrapper .nav>li {
+    float: left;
+}
+
+.nav .allgoods-wrapper {
+    position: relative;
+}
+
+
+/*左侧导航栏*/
+
+.nav .nav-left {
+    width: 234px;
+    height: 420px;
+    padding: 20px 0;
+    background-color: rgba(71, 71, 71, 0.6);
+    position: absolute;
+    z-index: 99;
+    left: -110px;
+    line-height: 1;
+}
+
+.nav .nav-left li a {
+    font-size: 14px;
+    color: white;
+    display: block;
+    padding: 0 20px;
+    height: 42px;
+    line-height: 42px
+}
+
+.nav .nav-left li a:hover {
+    background-color: #ff6700;
+    color: white;
+}
+
+.nav .nav-left a i {
+    float: right;
+    line-height: 42px;
+    font-size: 14px;
+}
+
+.nav-wrapper .nav {
+    height: 100px;
+    line-height: 100px;
+    padding-left: 48px;
+}
+
+.nav-wrapper li a {
+    display: block;
+    font-size: 16px;
+    padding: 0 10px;
+}
+
+.all-goods {
+    visibility: hidden;
+    /*隐藏li*/
+}
+
+.nav-wrapper li a:hover {
+    color: #ff6700;
+}
+
+.nav-wrapper .goods-list {
+    width: 100%;
+    height: 0;
+    background-color: white;
+    transition: height 0.3s;
+    /*
+    border: 1px solid rgb(224, 224, 224);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+    */
+    position: absolute;
+    left: 0;
+    top: 140px;
+    z-index: 999;
+}
+
+
+/*选择li后的所有.goods-list兄弟元素*/
+
+.nav .show-goods:hover~.goods-list,
+.goods-list:hover {
+    height: 228px;
+    border: 1px solid rgb(224, 224, 224);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+}
+
+.search-wrapper {
+    width: 296px;
+    height: 50px;
+    float: right;
+    margin-top: 25px;
+}
+
+.search-inp {
+    float: left;
+    box-sizing: border-box;
+    width: 244px;
+    height: 50px;
+    border: 1px solid rgb(224, 224, 224);
+    font-size: 16px;
+    background-color: #fff;
+    outline: none;
+}
+
+
+/*获取焦点*/
+
+.search-inp:focus,
+.search-inp:focus+button {
+    border-color: #ff6700;
+}
+
+.search-btn {
+    float: left;
+    color: #616161;
+    font-size: 16px;
+    width: 52px;
+    height: 50px;
+    border: 1px solid rgb(224, 224, 224);
+    border-left: none;
+    background-color: #fff;
+}
+
+.search-btn:hover {
+    background-color: #ff6700;
+    color: #fff;
+    border: none;
+}
+
+
+/*binner*/
+
+.binner {
+    position: relative;
+    height: 460px;
+    overflow: hidden;
+}
+
+.binner .img-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500%;
+    z-index: 1;
+}
+
+.binner .img-list li {
+    float: left;
+    height: 460px;
+}
+
+.binner img {
+    height: 460px;
+}
+
+.pointer {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    z-index: 2;
+}
+
+.pointer a {
+    float: left;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 2px rgba(255, 255, 255, 0.3) solid;
+    margin: 3px;
+    cursor: pointer;
+}
+
+.current {
+    background-color: #999;
+}
+
+
+/*箭头*/
+
+.pre-next a {
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, .3);
+    width: 30px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    position: absolute;
+    margin: auto 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+}
+
+.pre {
+    display: none;
+    left: 235px;
+}
+
+.next {
+    display: none;
+    right: 0;
+}
+
+.back-top {
+    width: 24px;
+    height: 206px;
+    background-color: #ff6700;
+    position: absolute;
+    top: 300px;
+    /* 使用bottom固定位置滚动时会跳动 */
+    right: 0;
+    z-index: 999;
+}
+
+.back-top .popup {
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    color: #333;
+    background-color: #ff6700;
+}
+
+.popup-win {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 60px;
+    color: #333;
+    background-color: #ff6700;
+}
+
+.back-top .top {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+}
+
+
+/*底部广告*/
+
+.ad {
+    margin-top: 20px;
+}
+
+.ad .shortcut {
+    float: left;
+    width: 234px;
+    height: 170px;
+    background-color: #5f5750;
+    color: #cfccca;
+}
+
+.shortcut a {
+    float: left;
+    width: 76px;
+    height: 84px;
+    text-align: center;
+    line-height: 84px;
+}
+
+.ad .wuyu a {
+    margin-left: 15px;
+    float: left;
+    width: 310px;
+    height: 170px;
+    background-color: rgb(206, 206, 209);
+}
+
+.filler {
+    height: 700px;
+    background-color: cornflowerblue;
+}
